@@ -10,14 +10,15 @@
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="59dp"
-        tools:layout_editor_absoluteY="-101dp">
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="88dp">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/listContacts"
+            android:id="@+id/list_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/white" />
+            android:background="@android:color/white"
+            tools:listitem="@layout/custom_list_item" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

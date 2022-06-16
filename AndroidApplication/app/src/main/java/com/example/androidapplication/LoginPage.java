@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Window;
 import android.widget.Button;
 
 public class LoginPage extends AppCompatActivity {
@@ -21,6 +20,12 @@ public class LoginPage extends AppCompatActivity {
         btnRegisterLink.setOnClickListener(v -> {
             Intent i = new Intent(this, RegisterPage.class);
             startActivity(i);
+        });
+
+        Button btnLogin = findViewById(R.id.btnLogin);
+        btnLogin.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), MainPage.class);
+            startActivity(intent);
         });
     }
 }

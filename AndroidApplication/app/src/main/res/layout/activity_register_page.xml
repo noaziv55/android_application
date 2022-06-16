@@ -27,6 +27,12 @@
                 android:orientation="vertical"
                 android:padding="20dp">
 
+                <ImageView
+                    android:id="@+id/profileImg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_launcher_foreground" />
+
                 <EditText
                     android:id="@+id/editTextTextPersonName"
                     android:layout_width="match_parent"
