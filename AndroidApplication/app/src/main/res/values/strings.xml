@@ -11,4 +11,6 @@
     <string name="register_etNickname">Nickname</string>
     <string name="register_btn">Register</string>
     <string name="login_link_btn">Click here to login</string>
+    <string name="server">server</string>
+    <string name="enter_your_text_here">Enter your text here</string>
 </resources>

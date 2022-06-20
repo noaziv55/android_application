@@ -22,6 +22,7 @@ public class CustomListAdapter extends RecyclerView.Adapter<CustomListAdapter.Co
         private final TextView contactName;
         private final TextView lastMsg;
         private final TextView time;
+        private final TextView server;
 
         private ContactViewHolder (View itemView){
             super(itemView);
@@ -30,6 +31,7 @@ public class CustomListAdapter extends RecyclerView.Adapter<CustomListAdapter.Co
             contactName = itemView.findViewById(R.id.user_name);
             lastMsg = itemView.findViewById(R.id.last_massage);
             time = itemView.findViewById(R.id.time);
+            server = itemView.findViewById(R.id.etServer);
             itemView.setOnClickListener(this);
         }
 
@@ -58,10 +60,11 @@ public class CustomListAdapter extends RecyclerView.Adapter<CustomListAdapter.Co
     public void onBindViewHolder(@NonNull ContactViewHolder holder, int position) {
         if (contacts != null){
             final Contact current = contacts.get(position);
-            holder.imageView.setImageResource(current.getPictureId());
             holder.contactName.setText(current.getContactName());
             holder.lastMsg.setText(current.getLastMassage());
             holder.time.setText(current.getLastMassageSendingTime());
+            holder.imageView.setImageResource(current.getProfileImg());
+            // holder.server.setText(current.getServer());
         }
     }
 

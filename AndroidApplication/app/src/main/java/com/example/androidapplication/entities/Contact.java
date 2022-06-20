@@ -1,28 +1,37 @@
 package com.example.androidapplication.entities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
 public class Contact {
-    @PrimaryKey(autoGenerate = true)
+    // @PrimaryKey(autoGenerate = true)
+    @NonNull
+    private  @PrimaryKey String contactName;
     private String userName;
-    @PrimaryKey(autoGenerate = true)
-    private String contactName;
+    //  @PrimaryKey(autoGenerate = true)
     private int profileImg;
     private String lastMassage;
     private String lastMassageSendingTime;
+    private String server;
 
-    public Contact(String userName, String contactName, int profileImg, String lastMassage, String lastMassageSendingTime) {
+    public Contact(String userName, String contactName, int profileImg, String lastMassage, String lastMassageSendingTime, String server) {
         this.userName = userName;
         this.contactName = contactName;
         this.profileImg = profileImg;
         this.lastMassage = lastMassage;
         this.lastMassageSendingTime = lastMassageSendingTime;
+        this.server= server;
     }
 
-    public int getPictureId() {
+
+    public String getServer(){
+        return server;
+    }
+
+    public int getProfileImg() {
         return profileImg;
     }
 
@@ -41,4 +50,5 @@ public class Contact {
     public String getContactName() {
         return contactName;
     }
+
 }

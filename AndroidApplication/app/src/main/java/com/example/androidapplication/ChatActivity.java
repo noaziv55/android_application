@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class ContactActivity extends AppCompatActivity {
+public class ChatActivity extends AppCompatActivity {
 
     ImageView profilePictureView;
     TextView contactNameView;
@@ -15,7 +15,7 @@ public class ContactActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contact);
+        setContentView(R.layout.activity_chat);
 
         profilePictureView = findViewById(R.id.user_image_profile_image);
         contactNameView = findViewById(R.id.user_text_user_name);
@@ -24,7 +24,7 @@ public class ContactActivity extends AppCompatActivity {
 
         if (activityIntent != null) {
             String contactName = activityIntent.getStringExtra("contactName");
-            int profilePicture = activityIntent.getIntExtra("profilePicture", R.drawable.blue);
+            int profilePicture = activityIntent.getIntExtra("profilePicture", R.drawable.default_profile_image);
 
             profilePictureView.setImageResource(profilePicture);
             contactNameView.setText(contactName);
