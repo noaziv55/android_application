@@ -8,11 +8,13 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.androidapplication.entities.Contact;
+import com.example.androidapplication.viewModels.ContactsViewModel;
 
 public class AddContactActivity extends AppCompatActivity {
 
-    private AppDB db;
-    private ContactDao contactDao;
+    public static ContactsViewModel contactsViewModel;
+    //private AppDB db;
+  //  private ContactDao contactDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,12 +23,15 @@ public class AddContactActivity extends AppCompatActivity {
 
         Intent loginIntent = getIntent();
         String username = loginIntent.getStringExtra("username");
-        db = Room.databaseBuilder(getApplicationContext(), AppDB.class, username)
-                .fallbackToDestructiveMigration()
-                .allowMainThreadQueries()
-                .build();
+        if (contactsViewModel == null || !(username.equals(contactsViewModel.getUsername()))) {
+            contactsViewModel = new ContactsViewModel(this.getApplicationContext(),username);
+        }
+//        db = Room.databaseBuilder(getApplicationContext(), AppDB.class, username)
+//                .fallbackToDestructiveMigration()
+//                .allowMainThreadQueries()
+//                .build();
 
-        contactDao = db.contactDao();
+       // contactDao = db.contactDao();
         Button btnAddContact = findViewById(R.id.bthAddContact);
         btnAddContact.setOnClickListener(v->{
             EditText etNickname = findViewById(R.id.etNickname);
@@ -34,7 +39,8 @@ public class AddContactActivity extends AppCompatActivity {
             Contact contact = new Contact(username,etNickname.getText().toString(),
                     R.drawable.default_profile_image,null,null,
                     etServer.getText().toString());
-            contactDao.insert(contact);
+            contactsViewModel.add(contact);
+          //  contactDao.insert(contact);
             finish();
         });
     }
