@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddContactActivity">
+    tools:context=".AddContactActivity"
+    android:background="@drawable/wallpaper">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,13 +26,14 @@
 
             <EditText
                 android:id="@+id/etNickname"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:ems="10"
                 android:hint="@string/register_etNickname"
                 android:importantForAutofill="no"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck"
+                android:textColor="#424242" />
 
             <EditText
                 android:id="@+id/etServer"
@@ -41,7 +43,8 @@
                 android:ems="10"
                 android:hint="@string/server"
                 android:importantForAutofill="no"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck"
+                android:textColor="#424242" />
 
             <Button
                 android:id="@+id/bthAddContact"

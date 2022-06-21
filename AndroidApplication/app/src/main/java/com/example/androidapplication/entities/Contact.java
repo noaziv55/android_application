@@ -5,11 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity
+@Entity(primaryKeys = {"contactName","userName"})
 public class Contact {
    // @PrimaryKey(autoGenerate = true)
     @NonNull
-    private  @PrimaryKey String contactName;
+    private String contactName;
+    @NonNull
     private String userName;
   //  @PrimaryKey(autoGenerate = true)
     private int profileImg;

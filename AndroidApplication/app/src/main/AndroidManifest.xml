@@ -17,11 +17,16 @@
             android:name=".AddContactActivity"
             android:exported="false" />
         <activity
-            android:name=".CustomListAdapter"
+            android:name=".adapters.CustomListAdapter"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
+        <activity
+            android:name=".ChatActivity"
             android:exported="false" />
         <activity
-            android:name=".ContactActivity"
-            android:exported="false" />
+            android:name=".entities.Contact"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".MainPage"
             android:exported="false" />

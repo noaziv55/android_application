@@ -2,6 +2,7 @@ package com.example.androidapplication;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,7 +19,10 @@ public class AddContactActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_contact);
 
-        db = Room.databaseBuilder(getApplicationContext(), AppDB.class, "ContactDB")
+        Intent loginIntent = getIntent();
+        String username = loginIntent.getStringExtra("username");
+        db = Room.databaseBuilder(getApplicationContext(), AppDB.class, username)
+                .fallbackToDestructiveMigration()
                 .allowMainThreadQueries()
                 .build();
 
@@ -27,8 +31,8 @@ public class AddContactActivity extends AppCompatActivity {
         btnAddContact.setOnClickListener(v->{
             EditText etNickname = findViewById(R.id.etNickname);
             EditText etServer = findViewById(R.id.etServer);
-            Contact contact = new Contact("ADMIN",etNickname.getText().toString(),
-                    R.drawable.blue,"hello","20:00",
+            Contact contact = new Contact(username,etNickname.getText().toString(),
+                    R.drawable.default_profile_image,null,null,
                     etServer.getText().toString());
             contactDao.insert(contact);
             finish();
