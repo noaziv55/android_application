@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.example.androidapplication.adapters.CustomListAdapter;
 import com.example.androidapplication.entities.Contact;
@@ -69,6 +70,13 @@ public class MainPage extends AppCompatActivity {
 //        if (contacts.isEmpty()){
 //            Log.i("mainPage","list is empty");
 //        }
+
+        ImageButton btnSetting = findViewById(R.id.btnSetting);
+        btnSetting.setOnClickListener(v -> {
+            Intent intent = new Intent(this, SettingsPage.class);
+            startActivity(intent);
+        });
+
         FloatingActionButton btnAdd = findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(v -> {
             Intent intent = new Intent(this, AddContactActivity.class);

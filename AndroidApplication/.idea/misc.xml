@@ -9,14 +9,15 @@
         <entry key="..\:/Users/noazi/AndroidStudioProjects/AndroidApplication/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/Users/noazi/AndroidStudioProjects/AndroidApplication/app/src/main/res/drawable/radius.xml" value="0.264" />
         <entry key="..\:/Users/noazi/AndroidStudioProjects/AndroidApplication/app/src/main/res/layout/activity_add_contact.xml" value="0.264" />
-        <entry key="..\:/Users/noazi/AndroidStudioProjects/AndroidApplication/app/src/main/res/layout/activity_chat.xml" value="0.2" />
+        <entry key="..\:/Users/noazi/AndroidStudioProjects/AndroidApplication/app/src/main/res/layout/activity_chat.xml" value="0.264" />
         <entry key="..\:/Users/noazi/AndroidStudioProjects/AndroidApplication/app/src/main/res/layout/activity_chatt.xml" value="0.27533133817870886" />
         <entry key="..\:/Users/noazi/AndroidStudioProjects/AndroidApplication/app/src/main/res/layout/activity_contact.xml" value="0.16" />
         <entry key="..\:/Users/noazi/AndroidStudioProjects/AndroidApplication/app/src/main/res/layout/activity_list.xml" value="0.264" />
-        <entry key="..\:/Users/noazi/AndroidStudioProjects/AndroidApplication/app/src/main/res/layout/activity_login_page.xml" value="0.264" />
+        <entry key="..\:/Users/noazi/AndroidStudioProjects/AndroidApplication/app/src/main/res/layout/activity_login_page.xml" value="0.536" />
         <entry key="..\:/Users/noazi/AndroidStudioProjects/AndroidApplication/app/src/main/res/layout/activity_main.xml" value="0.4" />
-        <entry key="..\:/Users/noazi/AndroidStudioProjects/AndroidApplication/app/src/main/res/layout/activity_main_page.xml" value="0.37072649572649574" />
+        <entry key="..\:/Users/noazi/AndroidStudioProjects/AndroidApplication/app/src/main/res/layout/activity_main_page.xml" value="0.2544570502431118" />
         <entry key="..\:/Users/noazi/AndroidStudioProjects/AndroidApplication/app/src/main/res/layout/activity_register_page.xml" value="0.264" />
+        <entry key="..\:/Users/noazi/AndroidStudioProjects/AndroidApplication/app/src/main/res/layout/activity_settings.xml" value="0.18546231961517906" />
         <entry key="..\:/Users/noazi/AndroidStudioProjects/AndroidApplication/app/src/main/res/layout/activity_user.xml" value="0.16" />
         <entry key="..\:/Users/noazi/AndroidStudioProjects/AndroidApplication/app/src/main/res/layout/custom_list_item.xml" value="0.264" />
       </map>

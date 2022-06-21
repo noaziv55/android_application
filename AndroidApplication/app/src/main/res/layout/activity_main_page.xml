@@ -4,23 +4,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#22DCD8D0"
+    android:background="@color/background_color"
     tools:context=".MainPage">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/refreshLayout"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="88dp">
+        android:orientation="vertical">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/list_view"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/logo_bg_color2"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/main_page_title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="80"
+                android:gravity="center|start"
+                android:text="@string/chatapp"
+                android:textColor="@color/text_color"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:paddingLeft="10dp"/>
+
+            <ImageButton
+                android:id="@+id/btnSetting"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:paddingRight="10dp"
+                app:srcCompat="@drawable/ic_menu_settings"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </LinearLayout>
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refreshLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/white"
-            tools:listitem="@layout/custom_list_item" />
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            android:layout_weight="10">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/background_color"
+                tools:listitem="@layout/custom_list_item" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnAdd"
@@ -29,7 +64,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:clickable="true"
-        app:backgroundTint="#225926"
+        app:backgroundTint="@color/button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_menu_add"

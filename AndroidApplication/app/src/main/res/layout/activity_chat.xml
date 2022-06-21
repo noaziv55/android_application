@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#22DCD8D0">
+    android:background="@color/background_color">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="67dp"
             android:layout_weight="1"
-            android:background="#DDDDDD"
+            android:background="@color/logo_bg_color1"
             android:orientation="horizontal">
 
             <ImageView
@@ -34,7 +34,7 @@
                 android:layout_weight="10"
                 android:gravity="center|start"
                 android:text="User Name"
-                android:textColor="#424242"
+                android:textColor="@color/text_color"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
@@ -46,7 +46,7 @@
             android:layout_height="300dp"
             android:layout_marginBottom="9dp"
             android:layout_weight="80"
-            android:backgroundTint="#FFFEF8"
+            android:background="@color/background_color"
             tools:ignore="MissingConstraints">
 
             <androidx.recyclerview.widget.RecyclerView
@@ -61,6 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="67dp"
             android:layout_weight="1"
+            android:background="@color/light_grey"
             android:orientation="vertical">
 
             <LinearLayout
@@ -85,7 +86,7 @@
                     android:minHeight="48dp"
                     android:padding="10dp"
                     android:textAlignment="center"
-                    android:textColor="#424242"
+                    android:textColor="@color/text_color"
                     android:textSize="18sp" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -95,7 +96,7 @@
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:backgroundTint="#225926"
+                    android:backgroundTint="@color/button"
                     android:clickable="true"
                     app:elevation="2dp"
                     app:hoveredFocusedTranslationZ="0dp"

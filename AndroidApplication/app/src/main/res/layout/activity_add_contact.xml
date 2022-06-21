@@ -33,7 +33,7 @@
                 android:hint="@string/register_etNickname"
                 android:importantForAutofill="no"
                 tools:ignore="TouchTargetSizeCheck"
-                android:textColor="#424242" />
+                android:textColor="@color/text_color" />
 
             <EditText
                 android:id="@+id/etServer"
@@ -44,14 +44,14 @@
                 android:hint="@string/server"
                 android:importantForAutofill="no"
                 tools:ignore="TouchTargetSizeCheck"
-                android:textColor="#424242" />
+                android:textColor="@color/text_color" />
 
             <Button
                 android:id="@+id/bthAddContact"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:backgroundTint="#225926"
+                android:backgroundTint="@color/button"
                 android:text="Add Contact"
                 android:textColor="@color/white" />
         </LinearLayout>
