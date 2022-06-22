@@ -16,8 +16,8 @@ public class ContactsViewModel {
     private LiveData<List<Contact>> contacts;
     private String username;
 
-    public ContactsViewModel(Context context, String username){
-        this.repository = new ContactsRepository(context, username);
+    public ContactsViewModel(Context context, String username, String server){
+        this.repository = new ContactsRepository(context, username, server);
         this.contacts= repository.getAll();
         this.username=username;
     }
@@ -39,5 +39,5 @@ public class ContactsViewModel {
         repository.add(contact); }
 
 //    public void delete(Contact contact) { repository.delete(contact); }
-//    public void reload() { repository.reload(); }
+   // public void reload() { repository.reload(); }
 }

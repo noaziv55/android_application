@@ -21,7 +21,7 @@ public class UsersRepository {
 
 
     public UsersRepository (Context context, String roomName) {
-        this.db = AppDB.getInstance(context, roomName);
+        this.db = AppDB.getInstance(context);
         this.dao = db.userDao();
         this.usersListData = new UsersListData();
     }
@@ -47,7 +47,11 @@ public class UsersRepository {
 
     public void add(final User user) {
         dao.insert(user);
+        usersListData.postValue(dao.index());
         // api.add(post);
+    }
+    public User hasUser(String username){
+        return dao.get(username);
     }
 
 //    public List<User> refresh(){

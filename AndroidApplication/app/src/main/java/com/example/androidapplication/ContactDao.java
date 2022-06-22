@@ -1,7 +1,9 @@
 package com.example.androidapplication;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
@@ -12,10 +14,10 @@ import java.util.List;
 @Dao
 public interface ContactDao {
 
-    @Query("SELECT * FROM contact")
-    List<Contact> index();
+    @Query("SELECT * FROM contact WHERE ContactOfUser = :username")
+    List<Contact> index(String username);
 
-    @Query("SELECT * FROM contact WHERE contactName = :contactName")
+    @Query("SELECT * FROM contact WHERE name = :contactName")
     Contact get(String contactName);
 
     @Insert
@@ -24,5 +26,9 @@ public interface ContactDao {
     @Update
     void update(Contact...contacts);
 
-    //void delete(Contact...contacts);
+    @Query("DELETE FROM contact WHERE ContactOfUser=:username")
+    void deleteAll(String username);
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    void insertAll(List<Contact> contacts);
 }

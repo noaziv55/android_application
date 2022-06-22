@@ -60,9 +60,9 @@ public class CustomListAdapter extends RecyclerView.Adapter<CustomListAdapter.Co
     public void onBindViewHolder(@NonNull ContactViewHolder holder, int position) {
         if (contacts != null){
             final Contact current = contacts.get(position);
-            holder.contactName.setText(current.getContactName());
-            holder.lastMsg.setText(current.getLastMassage());
-            holder.time.setText(current.getLastMassageSendingTime());
+            holder.contactName.setText(current.getName());
+            holder.lastMsg.setText(current.getLast());
+            holder.time.setText(current.getLastdate());
             holder.imageView.setImageResource(current.getProfileImg());
             // holder.server.setText(current.getServer());
         }

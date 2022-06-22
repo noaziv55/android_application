@@ -12,23 +12,27 @@ import java.util.List;
 public class UsersViewModel {
     private UsersRepository repository;
     private LiveData<List<User>> users;
-    private String username;
+    // private String username;
 
 
 
-    public UsersViewModel(Context context, String username){
-        this.repository = new UsersRepository(context, username);
+    public UsersViewModel(Context context){
+        this.repository = new UsersRepository(context, "UsersDB");
         this.users= repository.getAll();
-        this.username=username;
+        // this.username=username;
     }
 
     public LiveData<List<User>> getUsers() {
         return users;
     }
 
-    public String getUsername(){
-        return username;
+    public User getUser(String username){
+        return repository.hasUser(username);
     }
+
+//    public String getUsername(){
+//        return username;
+//    }
 
     //not good
 //    public List<User> refresh(){
