@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     tools:context=".entities.Contact"
-    android:background="@color/white"
+    android:background="@color/background_color"
     android:layout_height="wrap_content">
 
     <RelativeLayout
@@ -25,7 +25,7 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_marginStart="20dp"
-                tools:src="@drawable/blue"/>
+                tools:src="@drawable/default_profile_image"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -39,7 +39,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="User Name"
-                    android:textColor="#424242"
+                    android:textColor="@color/text_color"
                     android:textSize="25dp"
                     android:textStyle="bold"
 
@@ -50,7 +50,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="Hi, how are you?"
-                    android:textColor="#424242"
+                    android:textColor="@color/text_color"
                     android:textSize="10dp"
                     android:layout_marginTop="5dp"
                     />
@@ -64,7 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="10:00"
-            android:textColor="@color/black"
+            android:textColor="@color/text_color"
             android:textSize="15dp"
             android:padding="15dp"
             android:layout_alignParentRight="true"

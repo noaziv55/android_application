@@ -3,27 +3,27 @@ package com.example.androidapplication.viewModels;
 import android.content.Context;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
 import com.example.androidapplication.entities.Contact;
+import com.example.androidapplication.entities.Message;
 import com.example.androidapplication.repositories.ContactsRepository;
+import com.example.androidapplication.repositories.MessagesRepository;
 
 import java.util.List;
 
-public class ContactsViewModel {
-
-    private ContactsRepository repository;
-    private LiveData<List<Contact>> contacts;
+public class MessagesViewModel {
+    private MessagesRepository repository;
+    private LiveData<List<Message>> messages;
     private String username;
 
-    public ContactsViewModel(Context context, String username){
-        this.repository = new ContactsRepository(context, username);
-        this.contacts= repository.getAll();
+    public MessagesViewModel(Context context, String username, String contactName){
+        this.repository = new MessagesRepository(context,username, contactName);
+        this.messages= repository.getAll();
         this.username=username;
     }
 
-    public LiveData<List<Contact>> getContacts() {
-        return contacts;
+    public LiveData<List<Message>> getMessages() {
+        return messages;
     }
 
     public String getUsername(){
@@ -35,8 +35,8 @@ public class ContactsViewModel {
 //        return this.repository.refresh();
 //    }
 
-    public void add(Contact contact) {
-        repository.add(contact); }
+    public void add(Message message) {
+        repository.add(message); }
 
 //    public void delete(Contact contact) { repository.delete(contact); }
 //    public void reload() { repository.reload(); }

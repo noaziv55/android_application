@@ -11,10 +11,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.androidapplication.entities.User;
+import com.example.androidapplication.viewModels.UsersViewModel;
 
 public class LoginPage extends AppCompatActivity {
 
     private UserDao userDao;
+    private UsersViewModel usersViewModel;
 
 
     private void showToast(String message) {
@@ -38,6 +40,10 @@ public class LoginPage extends AppCompatActivity {
         TextView username = (TextView) findViewById(R.id.editTextTextPersonName);
         TextView password = (TextView) findViewById(R.id.editTextTextPassword);
 
+        if (usersViewModel == null || (usersViewModel.getUser(username.getText().toString())) == null) {
+            usersViewModel = new UsersViewModel(this.getApplicationContext());
+        }
+
         Button btnLogin = findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(view -> {
 
@@ -46,13 +52,14 @@ public class LoginPage extends AppCompatActivity {
             } else if (password.getText().toString().length() < 8) {
                 showToast("Password must contain at least 8 characters");
             } else {
-                AppDB db = Room.databaseBuilder(getApplicationContext(), AppDB.class, username.getText().toString())
-                        .fallbackToDestructiveMigration()
-                        .allowMainThreadQueries()
-                        .build();
+//                AppDB db = Room.databaseBuilder(getApplicationContext(), AppDB.class, username.getText().toString())
+//                        .fallbackToDestructiveMigration()
+//                        .allowMainThreadQueries()
+//                        .build();
                // db.clearAllTables();
-                userDao = db.userDao();
-                User user = userDao.get(username.getText().toString());
+               // userDao = db.userDao();
+                //User user = userDao.get(username.getText().toString());
+                User user = usersViewModel.getUser(username.getText().toString());
                 if (user == null) {
                     showToast("User doesn't exist");
                 } else if (!(password.getText().toString().equals(user.getPassword()))) {

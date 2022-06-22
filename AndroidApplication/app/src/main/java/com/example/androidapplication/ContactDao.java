@@ -12,8 +12,8 @@ import java.util.List;
 @Dao
 public interface ContactDao {
 
-    @Query("SELECT * FROM contact")
-    List<Contact> index();
+    @Query("SELECT * FROM contact WHERE userName = :username")
+    List<Contact> index(String username);
 
     @Query("SELECT * FROM contact WHERE contactName = :contactName")
     Contact get(String contactName);

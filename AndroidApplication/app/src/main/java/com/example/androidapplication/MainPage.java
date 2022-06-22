@@ -8,6 +8,7 @@ import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageButton;
 
 import com.example.androidapplication.adapters.CustomListAdapter;
 import com.example.androidapplication.entities.Contact;
@@ -27,6 +28,8 @@ public class MainPage extends AppCompatActivity {
     private CustomListAdapter.RecyclerViewClickListener listener;
     private List<Contact> contacts;
     private String username;
+    private String nickname;
+    private String profileImg;
 
 
     @Override
@@ -37,6 +40,8 @@ public class MainPage extends AppCompatActivity {
         Intent loginIntent = getIntent();
 //        user = (User) loginIntent.getSerializableExtra("username");
         username = loginIntent.getStringExtra("username");
+        nickname = loginIntent.getStringExtra("nickname");
+        profileImg = loginIntent.getStringExtra("profileImg");
 //        db = Room.databaseBuilder(getApplicationContext(), AppDB.class, username)
 //                .fallbackToDestructiveMigration()
 //                .allowMainThreadQueries()
@@ -63,6 +68,15 @@ public class MainPage extends AppCompatActivity {
             adapter.setContacts(contacts);
             //did refresh also
         });
+
+        ImageButton btnSetting = findViewById(R.id.btnSetting);
+        btnSetting.setOnClickListener(v -> {
+            Intent intent = new Intent(this, SettingsPage.class);
+            intent.putExtra("nickname", nickname);
+            intent.putExtra("profileImg", profileImg);
+            startActivity(intent);
+        });
+
         FloatingActionButton btnAdd = findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(v -> {
             Intent intent = new Intent(this, AddContactActivity.class);
@@ -77,6 +91,7 @@ public class MainPage extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
             intent.putExtra("contactName", contactsViewModel.getContacts().getValue().get(position).getContactName());
             intent.putExtra("profilePicture", contactsViewModel.getContacts().getValue().get(position).getProfileImg());
+            intent.putExtra("username", username);
             startActivity(intent);
         };
     }

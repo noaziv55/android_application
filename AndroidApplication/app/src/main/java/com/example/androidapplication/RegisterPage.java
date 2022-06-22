@@ -20,6 +20,8 @@ import android.widget.Toast;
 
 import com.example.androidapplication.databinding.ActivityRegisterPageBinding;
 import com.example.androidapplication.entities.User;
+import com.example.androidapplication.viewModels.ContactsViewModel;
+import com.example.androidapplication.viewModels.UsersViewModel;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -29,6 +31,7 @@ public class RegisterPage extends AppCompatActivity {
     private String encodedImage;
     private ActivityRegisterPageBinding binding;
     private UserDao userDao;
+    private UsersViewModel usersViewModel;
 
     private void showToast(String message) {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
@@ -59,48 +62,51 @@ public class RegisterPage extends AppCompatActivity {
         TextView password = (TextView) findViewById(R.id.editTextTextPassword);
         TextView confirmPassword = (TextView) findViewById(R.id.editTextTextConfirmPassword);
 
+        if (usersViewModel == null || (usersViewModel.getUser(username.getText().toString())) == null) {
+            usersViewModel = new UsersViewModel(this.getApplicationContext());
+        }
+
         Button btnRegister = findViewById(R.id.btnRegister);
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (password.getText().toString().length() < 8) {
-                    showToast("Password must contain at least 8 characters");
+        btnRegister.setOnClickListener(v -> {
+            if (password.getText().toString().length() < 8) {
+                showToast("Password must contain at least 8 characters");
 
-                } else if (username.getText().toString().length() == 0 ||
-                        nickname.getText().toString().length() == 0 ||
-                        confirmPassword.getText().toString().length() == 0) {
-                    showToast("Please fill out all the fields");
+            } else if (username.getText().toString().length() == 0 ||
+                    nickname.getText().toString().length() == 0 ||
+                    confirmPassword.getText().toString().length() == 0) {
+                showToast("Please fill out all the fields");
 
-                } else if (!(password.getText().toString().equals(confirmPassword.getText().toString()))) {
-                    showToast("passwords does not match");
+            } else if (!(password.getText().toString().equals(confirmPassword.getText().toString()))) {
+                showToast("passwords does not match");
 
-                } else if (password.getText().toString().matches("[0-9]") || password.getText().toString().matches("[A-Za-z]+")) {
-                    showToast("password must contains numbers and letters");
+            } else if (password.getText().toString().matches("[0-9]") || password.getText().toString().matches("[A-Za-z]+")) {
+                showToast("password must contains numbers and letters");
 
-                } else if (encodedImage == null) {
-                    showToast("Please select profile pic");
-                }
-                //need also to check from the api that there is exist already
-                else {
-                    EditText username = findViewById(R.id.editTextTextPersonName);
-                    EditText nickname = findViewById(R.id.editTextTextPersonNickname);
-                    // EditText password = findViewById(R.id.editTextTextPassword);
+            } else if (encodedImage == null) {
+                showToast("Please select profile pic");
+            }
+            //need also to check from the api that there is exist already
+            else {
+                EditText username1 = findViewById(R.id.editTextTextPersonName);
+                EditText nickname1 = findViewById(R.id.editTextTextPersonNickname);
+                // EditText password = findViewById(R.id.editTextTextPassword);
 //                    EditText server = findViewById(R.id.server);
 
-                    AppDB db = Room.databaseBuilder(getApplicationContext(), AppDB.class, username.getText().toString())
-                            .fallbackToDestructiveMigration()
-                            .allowMainThreadQueries()
-                            .build();
-                    //db.clearAllTables();
-                    userDao = db.userDao();
-                    User user = userDao.get(username.getText().toString());
-                    if (user == null) {
-                        User newUser = new User(username.getText().toString(), nickname.getText().toString(), password.getText().toString(), "server", encodedImage);
-                        userDao.insert(newUser);
-                        showToast("You registered successfully");
-                    } else {
-                        showToast("you are already registered");
-                    }
+//                AppDB db = Room.databaseBuilder(getApplicationContext(), AppDB.class, username1.getText().toString())
+//                        .fallbackToDestructiveMigration()
+//                        .allowMainThreadQueries()
+//                        .build();
+                //db.clearAllTables();
+               // userDao = db.userDao();
+                //User user = userDao.get(username1.getText().toString());
+                User user = usersViewModel.getUser(username1.getText().toString());
+                if (user == null) {
+                    User newUser = new User(username1.getText().toString(), nickname1.getText().toString(), password.getText().toString(), "server", encodedImage);
+                    //userDao.insert(newUser);
+                    usersViewModel.add(newUser);
+                    showToast("You registered successfully");
+                } else {
+                    showToast("you are already registered");
                 }
             }
         });

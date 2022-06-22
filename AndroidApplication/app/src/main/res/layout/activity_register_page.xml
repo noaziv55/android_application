@@ -91,7 +91,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:backgroundTint="#225926"
+                    android:backgroundTint="@color/button"
                     android:textColor="@color/white"
                     android:text="@string/register_btn" />
 
@@ -103,7 +103,7 @@
                     android:layout_gravity="center"
                     android:backgroundTint="#00FFFFFF"
                     android:text="@string/login_link_btn"
-                    android:textColor="#424242" />
+                    android:textColor="@color/text_color" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

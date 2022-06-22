@@ -66,7 +66,7 @@ public class MessageListAdapter extends RecyclerView.Adapter  {
     @Override
     public int getItemViewType(int position) {
         Message message = messages.get(position);
-        if (Objects.equals(message.getFrom(), "Me")) {
+        if (message.isSent()) {
             return View_right;
         }
         return View_left;
