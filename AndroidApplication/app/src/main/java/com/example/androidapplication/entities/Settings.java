@@ -11,7 +11,7 @@ public class Settings {
     private String server;
 
     public Settings() {
-        this.server = "http://10.0.2.2:7019";
+        this.server = "http://10.0.2.2:7000";
     }
 
     @NonNull

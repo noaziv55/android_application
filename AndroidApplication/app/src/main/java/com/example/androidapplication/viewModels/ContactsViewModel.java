@@ -30,14 +30,17 @@ public class ContactsViewModel {
         return username;
     }
 
-    //not good
-//    public List<Contact> refresh(){
-//        return this.repository.refresh();
-//    }
+    public Contact getContact(String ContactName, String username){
+        return repository.getContact(ContactName,username);
+    }
+    public void updateContact(Contact contact) {
+        repository.updateContact(contact);
+    }
+
 
     public void add(Contact contact) {
         repository.add(contact); }
 
 //    public void delete(Contact contact) { repository.delete(contact); }
-   // public void reload() { repository.reload(); }
+    // public void reload() { repository.reload(); }
 }

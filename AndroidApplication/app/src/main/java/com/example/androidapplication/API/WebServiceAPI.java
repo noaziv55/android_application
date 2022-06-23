@@ -1,7 +1,10 @@
 package com.example.androidapplication.API;
 
 import com.example.androidapplication.entities.Contact;
+import com.example.androidapplication.entities.Invite;
 import com.example.androidapplication.entities.Message;
+import com.example.androidapplication.entities.Transfer;
+import com.example.androidapplication.entities.User;
 
 import java.util.List;
 
@@ -16,32 +19,49 @@ import retrofit2.http.Query;
 
 public interface WebServiceAPI {
 
+    class PostContact {
+        public String username;
+        public String contactName;
+        public String contactNickname;
+        public String contactServer;
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+        public PostContact(String username, String contactName, String contactNickname, String contactServer) {
+            this.username = username;
+            this.contactName = contactName;
+            this.contactNickname = contactNickname;
+            this.contactServer = contactServer;
+        }
+    }
+
     @GET("contacts")
     Call<List<Contact>> getContacts(@Query("username") String username);
 
     @POST("contacts")
     Call<Void> createContact(@Body Contact contact);
 
+    @POST("invitations")
+    Call<Invite> inviteContact(@Body Invite invite);
 
-/*
-    @GET("contacts")
-    Call<List<Contact>> getContacts(@Header("Authorization") String token);
+    @GET("users")
+    Call <User> getUser(@Query("username") String username ,@Query("password") String password );
 
-    @POST("contacts")
-    Call<Void> createContact(@Header("Authorization") String token, @Body Contact contactId);
-
-    // @POST("invitations")
-    // Call<Void> inviteContact(@Header("Authorization")String token,@Body Invite invite);
-
-    // @POST("transfer")
-    // Call<Void> transfer(@Header("Authorization")String token,@Body Transfer transfer);
+    @POST("users")
+    Call<Void> createUser(@Body User user );
 
     @GET("contacts/{id}/messages")
-    Call<List<Message>> getMessages(@Header("Authorization") String token, @Path("id") String id);
+    Call<List<Message>> getMessages(@Path("id") String id, @Query("username") String username);
 
-    @POST("contacts/{id}/messages")
-    Call<Void> createMessage(@Header("Authorization") String token, @Path("id") String id, @Body Message message);
+    @GET("contacts/{id}/messages")
+    Call<Void> createMessage(@Path("id") String id, @Body Message message);
 
-    *//*@POST("api/firebase/onconnect")
-    Call<Void> firebaseOnConnect(@Header("Authorization") String token, @Body String firebaseToken);*/
+    @POST("transfer")
+    Call<Void> transferMessage(@Body Transfer transfer);
+
+
+/*@POST("api/firebase/onconnect")
+    Call<Void> firebaseOnConnect(@Body String firebaseToken);*/
 }

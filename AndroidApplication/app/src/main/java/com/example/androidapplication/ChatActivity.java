@@ -7,8 +7,10 @@ import androidx.room.Room;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 import com.example.androidapplication.adapters.MessageListAdapter;
 import com.example.androidapplication.entities.Contact;
 import com.example.androidapplication.entities.Message;
+import com.example.androidapplication.viewModels.ContactsViewModel;
 import com.example.androidapplication.viewModels.MessagesViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -27,16 +30,13 @@ import java.util.List;
 
 public class ChatActivity extends AppCompatActivity {
 
-    //  public static Contact currentContact;
+    // public static Contact currentContact;
     ImageView profilePictureView;
     TextView contactNameView;
-    private AppDB db;
-    private MessageDao messageDao;
-    private List<Message> messages;
     private MessageListAdapter adapter;
     private RecyclerView listMessages;
     private MessagesViewModel messageViewModel;
-
+    private ContactsViewModel contactsViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,6 @@ public class ChatActivity extends AppCompatActivity {
         contactNameView = findViewById(R.id.user_text_user_name);
 
         Intent activityIntent = getIntent();
-
         String contactName = activityIntent.getStringExtra("contactName");
         String username = activityIntent.getStringExtra("username");
         int profilePicture = activityIntent.getIntExtra("profilePicture", R.drawable.default_profile_image);
@@ -55,19 +54,12 @@ public class ChatActivity extends AppCompatActivity {
         profilePictureView.setImageResource(profilePicture);
         contactNameView.setText(contactName);
 
-        //    contactNameView.setText(currentContact.getContactName());
-//        db = Room.databaseBuilder(getApplicationContext(), AppDB.class, "MessageDB")
-//                .fallbackToDestructiveMigration()
-//                .allowMainThreadQueries()
-//                .build();
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        String server = preferences.getString("server", "10.0.2.2:7000");
 
-//        SwipeRefreshLayout swipeRefreshLayout = findViewById(R.id.refreshSingleChat);
-//        swipeRefreshLayout.setEnabled(false);
-        //db.clearAllTables();
-
-        //  messageDao = db.messageDao();
-        //messages = messageDao.index("Me",contactNameView.getText().toString());
-        //change to the id noa gave it
+        if (contactsViewModel == null || !(username.equals(contactsViewModel.getUsername()))) {
+            contactsViewModel = new ContactsViewModel(this.getApplicationContext(), username, server);
+        }
         listMessages = findViewById(R.id.listMessages);
         adapter = new MessageListAdapter(this);
         listMessages.setAdapter(adapter);
@@ -81,40 +73,32 @@ public class ChatActivity extends AppCompatActivity {
         });
 
         FloatingActionButton btnSend = findViewById(R.id.btnSend);
-        btnSend.setOnClickListener(v->{
+        btnSend.setOnClickListener(v -> {
             //content
             EditText etContent = findViewById(R.id.msgBox);
-            //change "Me" to user.getUsername
             Calendar c = Calendar.getInstance();
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String formattedDate = df.format(c.getTime());
 
-            Message message = new Message(0,contactNameView.getText().toString(), username, etContent.getText().toString(),formattedDate, true);
-            //  messageDao.insert(message);
+            Message message = new Message(0, contactNameView.getText().toString(), username,
+                    etContent.getText().toString(), formattedDate, true);
             messageViewModel.add(message);
+            Contact currentContact = contactsViewModel.getContact(contactName, username);
+            currentContact.setLast(etContent.getText().toString());
+            currentContact.setLastdate(formattedDate);
+            contactsViewModel.updateContact(currentContact);
             etContent.getText().clear();
             messageViewModel.getMessages().observe(this, messages -> {
 
                 if (messages.size() > 0) adapter.setMessages(messages);
-                // messageViewModel.update();
                 listMessages.scrollToPosition(messages.size() - 1);
             });
         });
-        //adapter.setMessages(messages);
-//       finish();
-//       startActivity(getIntent());
-//        if (messages.size() > 0){
-//            swipeRefreshLayout.setRefreshing(false);
-//            listMessages.scrollToPosition(messages.size() - 1);
-//        }
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        //messages.clear();
-        //  messages.addAll(messageDao.index("Me",contactNameView.getText().toString()));
         adapter.notifyDataSetChanged();
     }
 }

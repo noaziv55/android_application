@@ -1,10 +1,11 @@
 package com.example.androidapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -15,7 +16,6 @@ import com.example.androidapplication.viewModels.UsersViewModel;
 
 public class LoginPage extends AppCompatActivity {
 
-    private UserDao userDao;
     private UsersViewModel usersViewModel;
 
 
@@ -40,8 +40,11 @@ public class LoginPage extends AppCompatActivity {
         TextView username = (TextView) findViewById(R.id.editTextTextPersonName);
         TextView password = (TextView) findViewById(R.id.editTextTextPassword);
 
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        String server = preferences.getString("server", "10.0.2.2:7000");
+
         if (usersViewModel == null || (usersViewModel.getUser(username.getText().toString())) == null) {
-            usersViewModel = new UsersViewModel(this.getApplicationContext());
+            usersViewModel = new UsersViewModel(this.getApplicationContext(),server);
         }
 
         Button btnLogin = findViewById(R.id.btnLogin);
@@ -52,13 +55,8 @@ public class LoginPage extends AppCompatActivity {
             } else if (password.getText().toString().length() < 8) {
                 showToast("Password must contain at least 8 characters");
             } else {
-//                AppDB db = Room.databaseBuilder(getApplicationContext(), AppDB.class, username.getText().toString())
-//                        .fallbackToDestructiveMigration()
-//                        .allowMainThreadQueries()
-//                        .build();
-                // db.clearAllTables();
-                // userDao = db.userDao();
-                //User user = userDao.get(username.getText().toString());
+//                UserAPI userAPI = new UserAPI();
+//                userAPI.get(username.getText().toString(), password.getText().toString());
                 User user = usersViewModel.getUser(username.getText().toString());
                 if (user == null) {
                     showToast("User doesn't exist");

@@ -3,7 +3,7 @@ package com.example.androidapplication;
 import android.app.Application;
 import android.content.Context;
 
-public class MyApplication extends Application {
+public class AndroidApplication extends Application {
     public static Context context;
 
     @Override

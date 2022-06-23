@@ -14,8 +14,8 @@ public interface MessageDao {
 //check why red
 
 
-    @Query("SELECT * FROM message WHERE ((`from`=:fromId AND `to`=:toId) OR (`from`=:toId AND `to`=:fromId ))" )
-    List<Message> index(String fromId, String toId);
+    @Query("SELECT * FROM message WHERE ((`from`=:from AND `to`=:to) OR (`from`=:to AND `to`=:from ))" )
+    List<Message> index(String from, String to);
 
     @Query("SELECT * FROM message")
     List<Message> getAllData();
@@ -34,6 +34,9 @@ public interface MessageDao {
 
     @Delete
     void delete(Message... messages);
+
+    @Query("DELETE FROM message WHERE ((`from`=:from AND `to`=:to) OR (`from`=:from AND `to`=:to ))")
+    void deleteAll(String from, String to);
 
 
 

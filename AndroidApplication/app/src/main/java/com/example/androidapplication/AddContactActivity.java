@@ -2,6 +2,7 @@ package com.example.androidapplication;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import com.example.androidapplication.viewModels.ContactsViewModel;
 public class AddContactActivity extends AppCompatActivity {
 
     public static ContactsViewModel contactsViewModel;
+    public static Context context;
     //private AppDB db;
     //  private ContactDao contactDao;
 
@@ -22,6 +24,8 @@ public class AddContactActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_contact);
+
+        context = getApplicationContext();
 
         Intent loginIntent = getIntent();
         String username = loginIntent.getStringExtra("username");
@@ -45,6 +49,7 @@ public class AddContactActivity extends AppCompatActivity {
             Contact contact = new Contact(username,etNickname.getText().toString(),
                     R.drawable.default_profile_image,null,null,
                     etServer.getText().toString());
+            //Contact contact = new Contact(username,etNickname.getText().toString(),etServer.getText().toString());
             contactsViewModel.add(contact);
             //  contactDao.insert(contact);
             finish();

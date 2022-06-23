@@ -3,10 +3,11 @@ package com.example.androidapplication.entities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-//@Entity (primaryKeys = {"name", "ContactOfUser"})
-@Entity (primaryKeys = {"name"})
+@Entity (primaryKeys = {"name", "ContactOfUser"})
+//@Entity (primaryKeys = {"name"})
 public class Contact {
     // @PrimaryKey(autoGenerate = true)
     @NonNull
@@ -23,6 +24,13 @@ public class Contact {
         this.profileImg = profileImg;
         this.last = last;
         this.lastdate = lastdate;
+        this.server = server;
+        this.ContactOfUser = ContactOfUser;
+    }
+
+    @Ignore
+    public Contact(@NonNull String name, @NonNull String ContactOfUser, String server) {
+        this.name = name;
         this.server = server;
         this.ContactOfUser = ContactOfUser;
     }

@@ -26,6 +26,30 @@ public class Message {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setTo(String to) {
+        this.to = to;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setCreated(String created) {
+        this.created = created;
+    }
+
+    public void setSent(boolean sent) {
+        this.sent = sent;
+    }
+
     public boolean isSent(){
         return sent;
     }
