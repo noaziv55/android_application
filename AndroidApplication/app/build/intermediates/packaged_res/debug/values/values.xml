@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="http://schemas.android.com/tools">
+    <color name="background_color">#DCFFFEF8</color>
+    <color name="black">#FF000000</color>
+    <color name="button">#225926</color>
+    <color name="header_color">#CCDEE5BC</color>
+    <color name="light_grey">#F3ECECEC</color>
+    <color name="logo_bg_color1">#A6CFDCC6</color>
+    <color name="logo_bg_color2">#A66E9E4E</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="radius_color">#CDFDFFF4</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="text_color">#2B2B2B</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="BaseUrl">http://10.0.2.2:7000/api/</string>
+    <string name="app_name">AndroidApplication</string>
+    <string name="btn_save">SAVE</string>
+    <string name="change_localhost">change localhost</string>
+    <string name="chatapp">ChatApp</string>
+    <string name="enter_your_text_here">Enter your text here</string>
+    <string name="loclhost">Loclhost:</string>
+    <string name="login_btn">Login</string>
+    <string name="login_etPassword">Password</string>
+    <string name="login_etUsername">Username</string>
+    <string name="login_link_btn">Click here to login</string>
+    <string name="logo_img">logo</string>
+    <string name="register_btn">Register</string>
+    <string name="register_etConfirmPassword">Confirm Password</string>
+    <string name="register_etNickname">Nickname</string>
+    <string name="register_etPassword">Password</string>
+    <string name="register_etUsername">Username</string>
+    <string name="register_link_btn">Click here if you are new</string>
+    <string name="server">server</string>
+    <string name="settings">Settings</string>
+    <string name="username">Username</string>
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        
+        <item name="colorPrimary">@color/header_color</item>
+        <item name="colorPrimaryVariant">@color/button</item>
+        <item name="colorOnPrimary">@color/white</item>
+        
+        <item name="colorSecondary">@color/light_grey</item>
+        <item name="colorSecondaryVariant">@color/text_color</item>
+        <item name="colorOnSecondary">@color/white</item>
+        
+        <item name="android:statusBarColor" ns1:targetApi="l">@color/logo_bg_color2</item>
+        
+    </style>
+</resources>

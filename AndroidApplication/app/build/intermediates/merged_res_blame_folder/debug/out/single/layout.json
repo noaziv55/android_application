@@ -1,0 +1,38 @@
+[
+    {
+        "merged": "com.example.androidapplication.app-mergeDebugResources-29:/layout/activity_settings.xml",
+        "source": "com.example.androidapplication.app-main-32:/layout/activity_settings.xml"
+    },
+    {
+        "merged": "com.example.androidapplication.app-mergeDebugResources-29:/layout/sent_message.xml",
+        "source": "com.example.androidapplication.app-main-32:/layout/sent_message.xml"
+    },
+    {
+        "merged": "com.example.androidapplication.app-mergeDebugResources-29:/layout/activity_add_contact.xml",
+        "source": "com.example.androidapplication.app-main-32:/layout/activity_add_contact.xml"
+    },
+    {
+        "merged": "com.example.androidapplication.app-mergeDebugResources-29:/layout/activity_login_page.xml",
+        "source": "com.example.androidapplication.app-main-32:/layout/activity_login_page.xml"
+    },
+    {
+        "merged": "com.example.androidapplication.app-mergeDebugResources-29:/layout/received_message.xml",
+        "source": "com.example.androidapplication.app-main-32:/layout/received_message.xml"
+    },
+    {
+        "merged": "com.example.androidapplication.app-mergeDebugResources-29:/layout/activity_register_page.xml",
+        "source": "com.example.androidapplication.app-main-32:/layout/activity_register_page.xml"
+    },
+    {
+        "merged": "com.example.androidapplication.app-mergeDebugResources-29:/layout/custom_list_item.xml",
+        "source": "com.example.androidapplication.app-main-32:/layout/custom_list_item.xml"
+    },
+    {
+        "merged": "com.example.androidapplication.app-mergeDebugResources-29:/layout/activity_main_page.xml",
+        "source": "com.example.androidapplication.app-main-32:/layout/activity_main_page.xml"
+    },
+    {
+        "merged": "com.example.androidapplication.app-mergeDebugResources-29:/layout/activity_chat.xml",
+        "source": "com.example.androidapplication.app-main-32:/layout/activity_chat.xml"
+    }
+]
