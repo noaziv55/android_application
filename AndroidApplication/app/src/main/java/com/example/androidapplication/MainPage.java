@@ -7,9 +7,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.widget.ImageButton;
 
+import com.example.androidapplication.API.ContactsAPI;
 import com.example.androidapplication.adapters.CustomListAdapter;
 import com.example.androidapplication.entities.Contact;
 import com.example.androidapplication.entities.User;
@@ -48,13 +51,17 @@ public class MainPage extends AppCompatActivity {
 //                .build();
 
         //db.clearAllTables();
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        String server = preferences.getString("server", "10.0.2.2:7000");
+
+        //ContactsAPI contactsAPI = new ContactsAPI(contactListData, dao, server);
 
         if (contactsViewModel == null || !(username.equals(contactsViewModel.getUsername()))) {
-            contactsViewModel = new ContactsViewModel(this.getApplicationContext(),username);
+            contactsViewModel = new ContactsViewModel(this.getApplicationContext(), username, server);
         }
         //contacts = (List<Contact>) contactsViewModel.getContacts();
         //contactDao = db.contactDao();
-      //  contacts = contactDao.index();
+        //  contacts = contactDao.index();
         //contacts = new ArrayList<>();
         list_view = findViewById(R.id.list_view);
         setOnClickListener();
@@ -89,7 +96,7 @@ public class MainPage extends AppCompatActivity {
     private void setOnClickListener() {
         listener = (v, position) -> {
             Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
-            intent.putExtra("contactName", contactsViewModel.getContacts().getValue().get(position).getContactName());
+            intent.putExtra("contactName", contactsViewModel.getContacts().getValue().get(position).getName());
             intent.putExtra("profilePicture", contactsViewModel.getContacts().getValue().get(position).getProfileImg());
             intent.putExtra("username", username);
             startActivity(intent);

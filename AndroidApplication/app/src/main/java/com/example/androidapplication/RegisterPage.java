@@ -6,10 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.View;
@@ -44,12 +46,6 @@ public class RegisterPage extends AppCompatActivity {
         binding = ActivityRegisterPageBinding.inflate((getLayoutInflater()));
         setContentView(binding.getRoot());
         setListeners();
-//        AppDB db = Room
-//                .databaseBuilder(AndroidClient.context, AppDB.class, username)
-//                .allowMainThreadQueries()
-//                .fallbackToDestructiveMigration()
-//                .build();
-
 
         Button btnLoginLink = findViewById(R.id.login_link_btn);
         btnLoginLink.setOnClickListener(v -> {
@@ -62,8 +58,11 @@ public class RegisterPage extends AppCompatActivity {
         TextView password = (TextView) findViewById(R.id.editTextTextPassword);
         TextView confirmPassword = (TextView) findViewById(R.id.editTextTextConfirmPassword);
 
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        String server = preferences.getString("server", "10.0.2.2:7000");
+
         if (usersViewModel == null || (usersViewModel.getUser(username.getText().toString())) == null) {
-            usersViewModel = new UsersViewModel(this.getApplicationContext());
+            usersViewModel = new UsersViewModel(this.getApplicationContext(),server);
         }
 
         Button btnRegister = findViewById(R.id.btnRegister);
@@ -89,22 +88,12 @@ public class RegisterPage extends AppCompatActivity {
             else {
                 EditText username1 = findViewById(R.id.editTextTextPersonName);
                 EditText nickname1 = findViewById(R.id.editTextTextPersonNickname);
-                // EditText password = findViewById(R.id.editTextTextPassword);
-//                    EditText server = findViewById(R.id.server);
 
-//                AppDB db = Room.databaseBuilder(getApplicationContext(), AppDB.class, username1.getText().toString())
-//                        .fallbackToDestructiveMigration()
-//                        .allowMainThreadQueries()
-//                        .build();
-                //db.clearAllTables();
-               // userDao = db.userDao();
-                //User user = userDao.get(username1.getText().toString());
                 User user = usersViewModel.getUser(username1.getText().toString());
                 if (user == null) {
-                    User newUser = new User(username1.getText().toString(), nickname1.getText().toString(), password.getText().toString(), "server", encodedImage);
-                    //userDao.insert(newUser);
+                    User newUser = new User(username1.getText().toString(), nickname1.getText().toString(), password.getText().toString(), encodedImage, "server");
                     usersViewModel.add(newUser);
-                    showToast("You registered successfully");
+                        showToast("You registered successfully");
                 } else {
                     showToast("you are already registered");
                 }

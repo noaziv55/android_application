@@ -3,6 +3,7 @@ package com.example.androidapplication;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
@@ -27,4 +28,10 @@ public interface UserDao {
     void update(User...users);
 
     //void delete(User...users);
+
+    @Query("DELETE FROM contact WHERE ContactOfUser=:username")
+    void deleteAll(String username);
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    void insertAll(List<Contact> contacts);
 }

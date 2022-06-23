@@ -21,6 +21,7 @@ public abstract class AppDB extends RoomDatabase {
    appDB = Room.databaseBuilder(context.getApplicationContext(), AppDB.class, "AppDB")
            .allowMainThreadQueries().build();
   }
+  //appDB.clearAllTables();
   return appDB;
  }
   public abstract ContactDao contactDao ();

@@ -16,8 +16,8 @@ public class UsersViewModel {
 
 
 
-    public UsersViewModel(Context context){
-        this.repository = new UsersRepository(context, "UsersDB");
+    public UsersViewModel(Context context, String server){
+        this.repository = new UsersRepository(context, "UsersDB", server);
         this.users= repository.getAll();
        // this.username=username;
     }

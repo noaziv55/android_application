@@ -50,15 +50,11 @@ public class MessagesRepository {
     }
 
     public void add(final Message message) {
-      //  getAll().postValue(dao.index(username,contactName));
         dao.insert(message);
         this.messagesListData.postValue(dao.index(username,contactName));
 
         // api.add(post);
     }
-
-
-
 
 //    public List<Contact> refresh(){
 //        return dao.index();

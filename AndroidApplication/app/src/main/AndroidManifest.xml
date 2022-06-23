@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.androidapplication">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
+        android:name=".AndroidApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -11,13 +13,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme.NoActionBar"
         tools:targetApi="31">
         <activity
             android:name=".SettingsPage"
-            android:exported="false" />
-        <activity
-            android:name=".SettingPage"
             android:exported="false" />
         <activity
             android:name=".AddContactActivity"
