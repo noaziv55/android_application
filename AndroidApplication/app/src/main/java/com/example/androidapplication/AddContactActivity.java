@@ -8,13 +8,16 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.androidapplication.entities.Contact;
 import com.example.androidapplication.viewModels.ContactsViewModel;
+import com.example.androidapplication.viewModels.UsersViewModel;
 
 public class AddContactActivity extends AppCompatActivity {
 
     public static ContactsViewModel contactsViewModel;
+    public static UsersViewModel usersViewModel;
     //private AppDB db;
     //  private ContactDao contactDao;
 
@@ -34,19 +37,23 @@ public class AddContactActivity extends AppCompatActivity {
         if (contactsViewModel == null || !(username.equals(contactsViewModel.getUsername()))) {
             contactsViewModel = new ContactsViewModel(this.getApplicationContext(),username, server);
         }
-//        db = Room.databaseBuilder(getApplicationContext(), AppDB.class, username)
-//                .fallbackToDestructiveMigration()
-//                .allowMainThreadQueries()
-//                .build();
 
+        if (usersViewModel == null || (usersViewModel.getUser(username)) == null) {
+            usersViewModel = new UsersViewModel(this.getApplicationContext(),server);
+        }
         // contactDao = db.contactDao();
         Button btnAddContact = findViewById(R.id.bthAddContact);
         btnAddContact.setOnClickListener(v->{
-            Contact contact = new Contact(username,etNickname.getText().toString(),
-                    R.drawable.default_profile_image,null,null,
-                    etServer.getText().toString());
-            contactsViewModel.add(contact);
-            //  contactDao.insert(contact);
+            if (usersViewModel.getUser(etNickname.getText().toString())!= null) {
+                Contact contact = new Contact(username, etNickname.getText().toString(),
+                        R.drawable.default_profile_image, null, null,
+                        etServer.getText().toString());
+                contactsViewModel.add(contact);
+                //  contactDao.insert(contact);
+            }
+            else{
+                Toast.makeText(getApplicationContext(), "user doesn't exist", Toast.LENGTH_SHORT).show();
+            }
             finish();
         });
     }

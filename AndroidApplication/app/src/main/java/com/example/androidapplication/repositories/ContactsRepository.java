@@ -6,10 +6,12 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.androidapplication.API.ContactsAPI;
+import com.example.androidapplication.API.WebServiceAPI;
 import com.example.androidapplication.AppDB;
 import com.example.androidapplication.ContactDao;
 import com.example.androidapplication.R;
 import com.example.androidapplication.entities.Contact;
+import com.example.androidapplication.entities.Invite;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -36,6 +38,15 @@ public class ContactsRepository {
         api.get(this, username);
     }
 
+    public void afterInvite(WebServiceAPI.PostContact contact) {
+        contact.setPostContactOfUser(username);
+        api.post(contact, this);
+    }
+
+    public void postHandle() {
+        api.get(this, username);
+    }
+
     class ContactsListData extends MutableLiveData<List<Contact>> {
         public ContactsListData() {
             super();
@@ -58,8 +69,6 @@ public class ContactsRepository {
 
         class PrimeThread extends Thread {
             public void run() {
-                List<Contact> a = dao.index(username);
-                List<Contact> allList = dao.index(username);
                 contactsListData.postValue(dao.index(username));
             }
         }
@@ -78,11 +87,9 @@ public class ContactsRepository {
     }
 
     public void handleAPIData(int status, List<Contact> contacts) {
-        if (status == 200) {
-
+        if (status == 200|| status == 201|| status == 204) {
             new Thread(() -> {
                 this.dao.deleteAll(this.username);
-                //this.dao.insertAll(updateContactsFields(contacts));
                 for (Contact contact: contacts){
                     contact.setContactOfUser(this.username);
                     contact.setProfileImg(R.drawable.default_profile_image);
@@ -93,34 +100,29 @@ public class ContactsRepository {
         }
     }
 
-    private List<Contact> updateContactsFields(List<Contact> contacts) {
-        for (Contact contact : contacts) {
-            contact.setContactOfUser(username);
-        }
-        return contacts;
-    }
-
     public LiveData<List<Contact>> getAll() {
         return contactsListData;
     }
 
     public Contact getContact(String contactName, String username){
-       List<Contact> contacts = getAll().getValue();
-       for( Contact contact : contacts){
-           if ((contact.getContactOfUser().equals(username)) && (contact.getName().equals(contactName))){
-               return contact;
-           }
-       }
-       return null;
+        List<Contact> contacts = getAll().getValue();
+        for( Contact contact : contacts){
+            if ((contact.getContactOfUser().equals(username)) && (contact.getName().equals(contactName))){
+                return contact;
+            }
+        }
+        return null;
     }
-
     public void updateContact(Contact contact){
         dao.update(contact);
         this.contactsListData.postValue(dao.index(username));
     }
-    public void add(final Contact contact) {
+
+    public void add(Contact contact) {
+        WebServiceAPI.PostContact postContact = new WebServiceAPI.PostContact(contact.getContactOfUser(), contact.getName(),contact.getName(), contact.getServer());
+        api.inviteContact(new Invite(contact.getContactOfUser(), contact.getName(), contact.getServer()), this, postContact);
         dao.insert(contact);
-        // api.add(post);
+        //api.add(contact);
     }
 
 //    public List<Contact> refresh(){

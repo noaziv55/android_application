@@ -2,11 +2,13 @@ package com.example.androidapplication;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Base64;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +26,12 @@ public class SettingsPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        Button set = (Button) findViewById(R.id.btnSave);
+        EditText wantedServer = (EditText) findViewById(R.id.settingsServerAddress);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        wantedServer.setHint(preferences.getString("server","10.0.2.2:7000"));
+        //set.setOnClickListener(this);
 
 /*        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         setContentView(R.layout.activity_settings);*/

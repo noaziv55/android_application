@@ -91,7 +91,8 @@ public class RegisterPage extends AppCompatActivity {
 
                 User user = usersViewModel.getUser(username1.getText().toString());
                 if (user == null) {
-                    User newUser = new User(username1.getText().toString(), nickname1.getText().toString(), password.getText().toString(), encodedImage, "server");
+                    User newUser = new User(username1.getText().toString(), nickname1.getText().toString(),
+                            password.getText().toString(), encodedImage, server);
                     usersViewModel.add(newUser);
                         showToast("You registered successfully");
                 } else {

@@ -1,19 +1,20 @@
 package com.example.androidapplication.API;
 
-import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.androidapplication.AddContactActivity;
 import com.example.androidapplication.ContactDao;
 import com.example.androidapplication.AndroidApplication;
 import com.example.androidapplication.R;
 import com.example.androidapplication.entities.Contact;
+import com.example.androidapplication.entities.Invite;
 import com.example.androidapplication.repositories.ContactsRepository;
 
 import java.util.List;
-import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import retrofit2.Call;
@@ -32,10 +33,10 @@ public class ContactsAPI {
     public ContactsAPI(MutableLiveData<List<Contact>> contactListData, ContactDao dao, String server) {
         this.contactListData = contactListData;
         this.dao = dao;
-        if (server.startsWith("localhost")) {
-            server = server.replace("localhost", "10.0.2.2");
+        if(server.startsWith("localhost")){
+            server = server.replace("localhost","10.0.2.2");
         }
-        serverUrl = "http://" + server + "/api/";
+        serverUrl = "http://"+server+"/api/";
 
         retrofit = new Retrofit.Builder()
                 .baseUrl(AndroidApplication.context.getString(R.string.BaseUrl))
@@ -62,5 +63,42 @@ public class ContactsAPI {
                 Log.i("fail", "fail");
             }
         });
+    }
+
+    public void inviteContact(Invite invite, ContactsRepository repository, WebServiceAPI.PostContact contact) {
+        Call<Invite> call = webServiceAPI.inviteContact(invite);
+        call.enqueue(new Callback<Invite>() {
+            @Override
+            public void onResponse(@NonNull Call<Invite> call, @NonNull Response<Invite> response) {
+                //Toast.makeText(AddContactActivity.context, "Contact added you as well", Toast.LENGTH_LONG).show();
+                repository.afterInvite(contact);
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Invite> call, @NonNull Throwable t) {
+                //String responseString = "Error : " + t;
+                //Toast.makeText(AddContactActivity.context, responseString, Toast.LENGTH_LONG).show();
+                Log.i("fail", "fail");
+            }
+        });
+
+
+    }
+
+    public void post(WebServiceAPI.PostContact contact, ContactsRepository repository) {
+        Call<Void> call = webServiceAPI.createContact (contact);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
+                Log.i("success", "success");
+                repository.postHandle();
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
+                Log.i("fail", "fail");
+            }
+        });
+
     }
 }

@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-//@Entity (primaryKeys = {"name", "ContactOfUser"})
-@Entity (primaryKeys = {"name"})
+@Entity (primaryKeys = {"name", "ContactOfUser"})
+//@Entity (primaryKeys = {"name"})
 public class Contact {
     // @PrimaryKey(autoGenerate = true)
     @NonNull
