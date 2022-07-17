@@ -3,6 +3,7 @@
 1. Introduction
 2. Setup and User Guide
 3. Contributors
+4. Notes
 
 ***
 
@@ -11,7 +12,10 @@
 In this project we created android chat application.
 The app allows the user to send texts messages to multiply contacts.
 
+![android login](https://user-images.githubusercontent.com/92301625/179402613-5444689c-8016-4cd7-a247-5bc20350c43b.png)
+
 ***
+
 
 # 2. Setup and User Guide
 ## 2.1 Setup
@@ -57,5 +61,11 @@ default server is set to: `http://10.0.2.2:7000`
 
 * [Noam Gini](https://github.com/NoamGini)
 * [Noa Ziv](https://github.com/noaziv55)
+
+***
+
+# 4. Notes
+
+* By the approval of the teaching staff we uploded the missing files so you could run and check our android application.
 
 ***
