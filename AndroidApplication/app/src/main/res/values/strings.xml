@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">AndroidApplication</string>
+    <string name="login_btn">Login</string>
+    <string name="login_etPassword">Password</string>
+    <string name="login_etUsername">Username</string>
+    <string name="logo_img">logo</string>
+    <string name="register_link_btn">Click here if you are new</string>
+    <string name="register_etConfirmPassword">Confirm Password</string>
+    <string name="register_etPassword">Password</string>
+    <string name="register_etUsername">Username</string>
+    <string name="register_etNickname">Nickname</string>
+    <string name="register_btn">Register</string>
+    <string name="login_link_btn">Click here to login</string>
+    <string name="server">server</string>
+    <string name="enter_your_text_here">Enter your text here</string>
+    <string name="chatapp">ChatApp</string>
+    <string name="change_localhost">change localhost</string>
+    <string name="loclhost">Loclhost:</string>
+    <string name="settings">Settings</string>
+    <string name="username">Username</string>
+    <string name="btn_save">SAVE</string>
+    <string name="BaseUrl">http://10.0.2.2:7000/api/</string>
+</resources>
