@@ -10,7 +10,7 @@
 # 1. Introduction
 
 In this project we created android chat application.
-The app allows the user to send texts messages to multiply contacts.
+The app allows the user to send text messages to multiply contacts.
 
 ![android login](https://user-images.githubusercontent.com/92301625/179402613-5444689c-8016-4cd7-a247-5bc20350c43b.png)
 
