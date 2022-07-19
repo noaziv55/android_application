@@ -29,7 +29,8 @@ The app allows the user to send text messages to multiply contacts.
   ```bash
   git clone https://github.com/noaziv55/web_development.git
   ```
-* Setup the web API server according to the readme file in it's repository (part 4.1 - Setup)
+* Setup the web API server according to the readme file in it's repository: [Web-Api Server](https://github.com/noaziv55/web_development) <br/>
+on part 4.1 - Setup
 * For running this android app after cloning repos:<br />
   * First, run the web API server <br />
   * Then for the android application:
